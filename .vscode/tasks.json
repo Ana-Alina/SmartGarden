@@ -1,0 +1,104 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "Create object folder",
+      "command": "mkdir -Force object",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "type": "cppbuild",
+      "label": "Build source files",
+      "command": "C:/mingw64/bin/gcc.exe",
+      "args": [
+        "-fdiagnostics-color=always",
+        "-g",
+        "-c",
+        "--coverage",
+
+        "${workspaceFolder}/App_Cover/src/*.c",
+        "${workspaceFolder}/App_Humidity/src/*.c",
+        "${workspaceFolder}/App_Irrigation/src/*.c",
+        "${workspaceFolder}/App_Light/src/*.c",
+        "${workspaceFolder}/App_Main/src/*.c",
+        "${workspaceFolder}/App_Stubs/src/*.c",
+        "${workspaceFolder}/App_Temp/src/*.c",
+
+        "-I${workspaceFolder}/App_Cover/inc/",
+        "-I${workspaceFolder}/App_Humidity/inc/",
+        "-I${workspaceFolder}/App_Irrigation/inc/",
+        "-I${workspaceFolder}/App_Lib/inc/",
+        "-I${workspaceFolder}/App_Light/inc/",
+        "-I${workspaceFolder}/App_Main/inc/",
+        "-I${workspaceFolder}/App_Stubs/inc/",
+        "-I${workspaceFolder}/App_Temp/inc/"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/object"
+      },
+      "problemMatcher": ["$gcc"],
+      "group": "build",
+      "detail": "Task creating the object files for the project source.",
+      "dependsOn": ["Create object folder"]
+    },
+    {
+      "type": "cppbuild",
+      "label": "Build test files",
+      "command": "C:/mingw64/bin/g++.exe",
+      "args": [
+        "-fdiagnostics-color=always",
+        "-g",
+        "-c",
+
+        "${workspaceFolder}/App_Test/src/*.cpp",
+
+        "-I${workspaceFolder}/gtest/include/",
+        "-I${workspaceFolder}/App_Test/inc/",
+        "-I${workspaceFolder}/App_Cover/inc/",
+        "-I${workspaceFolder}/App_Humidity/inc/",
+        "-I${workspaceFolder}/App_Irrigation/inc/",
+        "-I${workspaceFolder}/App_Lib/inc/",
+        "-I${workspaceFolder}/App_Light/inc/",
+        "-I${workspaceFolder}/App_Main/inc/",
+        "-I${workspaceFolder}/App_Stubs/inc/",
+        "-I${workspaceFolder}/App_Temp/inc/"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/object"
+      },
+      "problemMatcher": ["$gcc"],
+      "group": "build",
+      "detail": "Task creating the object files for the test files.",
+      "dependsOn": ["Create object folder"]
+    },
+    {
+      "type": "cppbuild",
+      "label": "Build project",
+      "command": "C:/mingw64/bin/g++.exe",
+      "args": [
+        "-fdiagnostics-color=always",
+        "-g",
+        "--coverage",
+        "${workspaceFolder}/object/*.o",
+        "-L${workspaceFolder}/gtest/lib",
+        "-lgtest",
+        "-lgtest_main",
+        "-o",
+        "${workspaceFolder}/test_main.exe"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": ["$gcc"],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "dependsOn": ["Build source files", "Build test files"],
+      "detail": "Task generating the executable that runs all tests."
+    }
+  ]
+}

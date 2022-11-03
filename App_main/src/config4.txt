@@ -1,0 +1,14 @@
+GardenID=0
+Cove_Motor=Yes
+Temerature Monitoring=Yes
+Humidty Monitoring=Yes
+Light onitoring=Yes
+Irrigaion=Yes
+///////////////
+GardenID=1
+Cove_Motor=No
+Tempeature Monitoring=Yes
+Humidiy Monitoring=Yes
+LightMonitoring=No
+Irrigaion=Yes
+///////////////

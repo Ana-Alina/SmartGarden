@@ -1,0 +1,14 @@
+GardenID=0
+CoverMotor=lala
+TemperatureMonitoring=lala
+HumidityMonitoring=lala
+LightMonitoring=lala
+Irigation=lala
+///////////////
+GardenID=1
+CoverMotor=lala
+Temperatue Monitoring=lala
+Humidiy Monitoring=lala
+LightMonitoring=lala
+Irrigtion=lala
+///////////////
